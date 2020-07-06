@@ -144,7 +144,7 @@ rec {
 
   environment.systemPackages = with pkgs; [
     compsize # btrfs util
-    (callPackage ./btrfs-du.nix {})
+    (callPackage ./packages/btrfs-du.nix {})
   ];
 
   home-manager.users.delta = import ./home/home.nix networking.hostName;

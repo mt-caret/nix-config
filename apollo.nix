@@ -99,7 +99,7 @@
 
   environment.systemPackages = with pkgs; [
     compsize # btrfs util
-    (callPackage ./btrfs-du.nix {})
+    (callPackage ./packages/btrfs-du.nix {})
   ];
 
   # This value determines the NixOS release with which your system is to be
