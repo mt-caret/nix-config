@@ -114,7 +114,7 @@ in
         rootPatterns = [ "go.mod" ];
       };
       haskell = {
-        command = "haskell-language-server";
+        command = "haskell-language-server-wrapper";
         args = [ "--lsp" ];
         filetypes = [ "hs" "lhs" "haskell" ];
         rootPatterns = [ "stack.yaml" "cabal.config" "package.yaml" ];
@@ -147,7 +147,6 @@ in
         ignoredRootPaths = [ "~" ];
       };
     };
-    coc.preferences.formatOnSaveFiletypes =
-      [ "haskell" "nix" "ocaml" "rust" "bash" ];
+    coc.preferences.formatOnSaveFiletypes = builtins.attrNames languageserver;
   };
 }
