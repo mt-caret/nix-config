@@ -1,0 +1,13 @@
+diff --git a/weld/llvmext/Makefile b/weld/llvmext/Makefile
+index 4a1ada4..dd23795 100644
+--- a/weld/llvmext/Makefile
++++ b/weld/llvmext/Makefile
+@@ -10,7 +10,7 @@ LIB = libllvmext.a
+ ifeq ($(OS), Darwin)
+   CLANG ?= clang++
+ else ifeq ($(OS), Linux)
+-  CLANG ?= clang++-$(LLVM_VERSION)
++  CLANG ?= clang++
+ else
+   $(error Unsupported platform: $(OS))
+ endif
