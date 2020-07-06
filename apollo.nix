@@ -7,6 +7,7 @@
       ./common/fonts.nix
       ./common/ime.nix
       ./common/xmonad.nix
+      <home-manager/nixos>
     ];
 
   environment.variables.MESA_LOADER_DRIVER_OVERRIDE = "iris";
@@ -101,6 +102,8 @@
     compsize # btrfs util
     (callPackage ./packages/btrfs-du.nix {})
   ];
+
+  home-manager.users.delta = import ./home/home.nix networking.hostName;
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
