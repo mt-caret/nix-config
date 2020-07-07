@@ -85,6 +85,7 @@ in
 
     # dev-tools
     niv
+    nixos-generators
     gnumake
     gnum4
     ninja
