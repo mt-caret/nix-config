@@ -146,5 +146,8 @@ in
     daemonNiceLevel = 10;
     maxJobs = "auto";
   };
-  nixpkgs.config = import ./nixpkgs-config.nix;
+  nixpkgs = {
+    config = import ./nixpkgs-config.nix;
+    overlays = [ (import ../common/overlay.nix) ];
+  };
 }
