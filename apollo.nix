@@ -7,6 +7,7 @@ rec {
       ./common/fonts.nix
       ./common/ime.nix
       ./common/xmonad.nix
+      ./common/adblock.nix
       <home-manager/nixos>
     ];
 
