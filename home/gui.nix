@@ -7,7 +7,7 @@ let
       self.hostname
     ];
   };
-  hidpi = host == "artemis";
+  hidpi = host == "artemis" || host == "apollo";
 in
 {
   imports = [ ./vscode.nix ];
@@ -133,15 +133,16 @@ in
   };
 
   xresources.properties =
-    if hidpi
-    then { "Xft.dpi" = 163; }
-    else {};
+    if host == "artemis" then { "Xft.dpi" = 163; } else
+      if host == "apollo" then { "Xft.dpi" = 188; } else {};
 
   xsession = {
     enable = true;
     profileExtra =
       let
-        trayerHeight = builtins.toString (if hidpi then 36 else 30);
+        trayerHeight =
+          if host == "artemis" then 36 else
+            if host == "apollo" then 42 else 30;
       in
         ''
           ${pkgs.xorg.xset}/bin/xset r rate 220 50
@@ -174,7 +175,7 @@ in
             --SetPartialStrut true \
             --expand true \
             --width 8 \
-            --height ${trayerHeight} \
+            --height ${builtins.toString trayerHeight} \
             --transparent true \
             --tint 0x000000 \
             --monitor primary \

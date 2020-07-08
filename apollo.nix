@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-{
+rec {
   imports =
     [
       /etc/nixos/hardware-configuration.nix
@@ -7,6 +7,8 @@
       ./common/fonts.nix
       ./common/ime.nix
       ./common/xmonad.nix
+      ./common/adblock.nix
+      <home-manager/nixos>
     ];
 
   environment.variables.MESA_LOADER_DRIVER_OVERRIDE = "iris";
@@ -99,8 +101,10 @@
 
   environment.systemPackages = with pkgs; [
     compsize # btrfs util
-    (callPackage ./packages/btrfs-du.nix {})
+    btrfs-du
   ];
+
+  home-manager.users.delta = import ./home/home.nix networking.hostName;
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

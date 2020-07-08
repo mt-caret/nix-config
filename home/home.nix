@@ -1,4 +1,4 @@
-host: { config, pkgs, ... }:
+host: { config, pkgs, lib, ... }:
 let
   unstable = import ./unstable.nix;
   isNixOS = host == "athena" || host == "apollo" || host == "artemis";
@@ -35,7 +35,7 @@ in
     bind
     cmus
     colordiff
-    (callPackage (callPackage ../packages/comma.nix {}) {})
+    comma
     convmv
     docker_compose
     dstat
@@ -84,8 +84,8 @@ in
     lshw
 
     # dev-tools
-    (callPackage ../packages/weld {})
     niv
+    nixos-generators
     gnumake
     gnum4
     ninja
@@ -192,8 +192,21 @@ in
     };
   };
 
-  nixpkgs.config = import ../common/nixpkgs-config.nix;
+  nixpkgs = {
+    config = import ../common/nixpkgs-config.nix;
+    overlays = [ (import ../common/overlay.nix) ];
+  };
   xdg.configFile."nixpkgs/config.nix".source = ../common/nixpkgs-config.nix;
+
+  # We would like to use xdg.configFile here as well, but doing that will
+  # break the relative imports inside the file, so we symlink it instead.
+  # Note this implicitly assumes that the config directory exists at $HOME/config.
+  #xdg.configFile."nixpkgs/overlays/overlay.nix".source = ../common/overlay.nix;
+  home.activation.linkOverlay = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD mkdir -p $VERBOSE_ARG ~/.config/nixpkgs/overlays/
+    $DRY_RUN_CMD ln -sf $VERBOSE_ARG $HOME/config/nix-config/common/overlay.nix \
+      ~/.config/nixpkgs/overlays/mutable-overlay.nix
+  '';
 
   xdg.configFile = {
     "ranger/commands_full.py".source = ../../ranger/commands_full.py;
