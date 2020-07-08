@@ -170,6 +170,10 @@ in
           fi
           rm -f -- "$tempfile"
         }
+
+        if [ -d ~/.opam ]; then
+          eval "$(opam config env)"
+        fi
       '';
     };
     tmux = {

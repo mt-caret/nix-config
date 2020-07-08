@@ -139,6 +139,7 @@ in
           clippy_preference = "on";
         };
       };
+      # TODO: check if this really is working
       bash = {
         command =
           "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
