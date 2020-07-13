@@ -49,6 +49,7 @@ in
     graphviz
     htop
     imagemagickBig
+    inotify-tools
     jq
     loc
     lsof
@@ -91,7 +92,6 @@ in
     ninja
     gdb
     valgrind
-    stack
     opam
     nodejs-12_x
     yarn
@@ -113,6 +113,7 @@ in
       dejsonlz4
       youtube-dl
       clinfo
+      stack
     ]
   );
 
@@ -160,6 +161,7 @@ in
 
           add_to_path_if_exists /usr/local/go/bin
         fi
+        add_to_path_if_exists ~/.local/bin
 
         function r {
           tempfile="$(mktemp -t tmp.XXXXXX)"
