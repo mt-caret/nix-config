@@ -57,6 +57,7 @@ in
     mosh
     ncdu
     neofetch
+    newsboat
     nload
     nkf
     # unfortunately, nmap clashes with nmap-graphical; nothing we can do about this
