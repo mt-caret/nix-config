@@ -115,9 +115,14 @@ in
     with unstable; [
       dejsonlz4
       youtube-dl
+      gallery-dl
       clinfo
       stack
-    ]
+    ] ++ (
+      if isNixOS
+      then [ haskellPackages.haskell-language-server ]
+      else []
+    )
   );
 
   programs = {
