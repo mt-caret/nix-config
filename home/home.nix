@@ -86,6 +86,8 @@ in
     lshw
 
     # dev-tools
+    indent
+    j
     niv
     nixos-generators
     gnumake
