@@ -55,6 +55,7 @@ in
       loc
       lsof
       man-pages
+      mathjax-node-page
       mosh
       ncdu
       neofetch
