@@ -17,101 +17,103 @@ in
       if host == "ubuntu-container"
       then [ ./ubuntu.nix ./vim.nix ./rust.nix ] else [];
 
-  home.packages = with pkgs; [
-    # ranger-tools
-    atool
-    ffmpegthumbnailer # for video previews
-    mediainfo
-    p7zip # for atool
-    ranger
-    ueberzug # for image previews
-    unrar # for atool
-    unzip # for atool
+  home.packages = (
+    with pkgs; [
+      # ranger-tools
+      atool
+      ffmpegthumbnailer # for video previews
+      mediainfo
+      p7zip # for atool
+      ranger
+      ueberzug # for image previews
+      unrar # for atool
+      unzip # for atool
 
-    # shell-tools
-    aria2
-    axel
-    bc
-    bind
-    cmus
-    colordiff
-    comma
-    convmv
-    docker_compose
-    dstat
-    entr
-    exiftool
-    ffmpeg
-    file
-    gettext
-    gnuplot
-    go-pup
-    graphviz
-    htop
-    imagemagickBig
-    inotify-tools
-    jq
-    loc
-    lsof
-    man-pages
-    mosh
-    ncdu
-    neofetch
-    newsboat
-    nload
-    nkf
-    # unfortunately, nmap clashes with nmap-graphical; nothing we can do about this
-    #nmap
-    openssl
-    optipng
-    # haskellPackages.patat # broken in nixos-19.03
-    pandoc
-    haskellPackages.pandoc-sidenote
-    haskellPackages.pandoc-crossref # broken in nixpkgs-unstable
-    parallel
-    pijul
-    poppler_utils
-    ripgrep
-    runzip
-    shellcheck
-    tokei
-    tree
-    whois
-    zip
+      # shell-tools
+      aria2
+      axel
+      bc
+      bind
+      cmus
+      colordiff
+      comma
+      convmv
+      docker_compose
+      dstat
+      entr
+      exiftool
+      ffmpeg
+      file
+      gettext
+      gnuplot
+      go-pup
+      graphviz
+      htop
+      imagemagickBig
+      inotify-tools
+      jq
+      loc
+      lsof
+      man-pages
+      mosh
+      ncdu
+      neofetch
+      newsboat
+      nload
+      nkf
+      # unfortunately, nmap clashes with nmap-graphical; nothing we can do about this
+      #nmap
+      openssl
+      optipng
+      # haskellPackages.patat # broken in nixos-19.03
+      pandoc
+      haskellPackages.pandoc-sidenote
+      haskellPackages.pandoc-crossref # broken in nixpkgs-unstable
+      parallel
+      pijul
+      poppler_utils
+      ripgrep
+      runzip
+      shellcheck
+      tokei
+      tree
+      whois
+      zip
 
-    # admin-utils
-    pciutils
-    powertop
-    usbutils
-    lshw
+      # admin-utils
+      pciutils
+      powertop
+      usbutils
+      lshw
 
-    # dev-tools
-    indent
-    j
-    niv
-    nixos-generators
-    gnumake
-    gnum4
-    ninja
-    gdb
-    valgrind
-    opam
-    nodejs-12_x
-    yarn
-    (
-      python3.withPackages (
-        ps: with ps; [
-          ipython
-          numpy
-          scipy
-          notebook
-          matplotlib
-          pandas
-          virtualenv
-        ]
+      # dev-tools
+      indent
+      j
+      niv
+      nixos-generators
+      gnumake
+      gnum4
+      ninja
+      gdb
+      valgrind
+      opam
+      nodejs-12_x
+      yarn
+      (
+        python3.withPackages (
+          ps: with ps; [
+            ipython
+            numpy
+            scipy
+            notebook
+            matplotlib
+            pandas
+            virtualenv
+          ]
+        )
       )
-    )
-  ] ++ (
+    ]
+  ) ++ (
     with unstable; [
       dejsonlz4
       youtube-dl
