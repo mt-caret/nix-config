@@ -70,16 +70,7 @@ in
     };
   };
 
-  networking = {
-    networkmanager.enable = true;
-    extraHosts = ''
-      # Fix for https://askubuntu.com/questions/1023429/cant-connect-to-google-starbucks-wifi-on-ubuntu-17-10
-      #172.31.98.1 aruba.odyssys.net
-
-      # for dev
-      10.188.163.210 10.188.163.210.xip.io
-    '';
-  };
+  networking.networkmanager.enable = true;
 
   environment.systemPackages = with pkgs; [
     wget

@@ -1,13 +1,17 @@
 { config, pkgs, ... }:
 let
-  hosts =
+  hosts-src =
     pkgs.fetchFromGitHub {
       owner = "StevenBlack";
       repo = "hosts";
-      rev = "a9a4aa2fe7adc1b0f8395e24e89f5fd09143f4e2";
-      sha256 = "1yr3r558zchxic8922z1b9zfmw9zmdy4ja17nncv91r1rgxvvvm4";
+      rev = "ca3a99a0499add858969ce8747049e681b85a2e2";
+      sha256 = "1mz3axgwv4n8q9k37hr2ajgppnmw2ayg9z18lbybykhwdybimhhc";
     };
+  hosts = pkgs.runCommand "hosts" {} ''
+    # fix for https://github.com/StevenBlack/hosts/issues/163
+    sed '/%lo/d' ${hosts-src}/hosts > $out
+  '';
 in
 {
-  networking.extraHosts = builtins.readFile "${hosts}/hosts";
+  networking.extraHosts = builtins.readFile "${hosts}";
 }
