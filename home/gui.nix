@@ -181,6 +181,7 @@ in
             --monitor primary \
             & disown
           xhost +local:
+          xset r rate 200 40
           [ -d /root-blank ] &&
             notify-send -u critical "opt-in state" "rollback failed"
         '';
