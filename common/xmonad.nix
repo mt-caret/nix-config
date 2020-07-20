@@ -57,6 +57,5 @@
       ];
     };
   };
-  services.compton.enable = true;
   programs.slock.enable = true;
 }
