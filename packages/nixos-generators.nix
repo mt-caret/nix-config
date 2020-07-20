@@ -1,5 +1,6 @@
 { fetchFromGitHub, pkgs }:
 let
+  # 2020-05-23
   src = fetchFromGitHub {
     owner = "nix-community";
     repo = "nixos-generators";

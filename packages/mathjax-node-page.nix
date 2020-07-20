@@ -1,6 +1,7 @@
 # see https://www.colabug.com/2017/0803/750573/
 { runCommand, fetchFromGitHub, nodePackages }:
 let
+  # 2020-07-16
   src = fetchFromGitHub {
     owner = "pkra";
     repo = "mathjax-node-page";

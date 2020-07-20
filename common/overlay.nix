@@ -5,4 +5,13 @@ with super; {
   btrfs-du = callPackage ../packages/btrfs-du.nix {};
   nixos-generators = callPackage ../packages/nixos-generators.nix {};
   mathjax-node-page = (callPackage (callPackage ../packages/mathjax-node-page.nix {}) {}).package;
+  ghidra-hidpi = ghidra-bin.overrideAttrs (
+    oldAttrs: {
+      postPath = ''
+        substituteInPlace ./support/launch.properties \
+          --replace "Dsun.java2d.uiScale=1" "Dsun.java2d.uiScale=2"
+      '';
+    }
+  );
+  obelisk = callPackage ../packages/obelisk.nix {};
 }
