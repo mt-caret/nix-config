@@ -19,4 +19,13 @@
   };
 
   security.sudo.wheelNeedsPassword = false;
+
+  environment.systemPackages = with pkgs; [
+    vim
+    htop
+    tmux
+    wget
+  ];
+
+  networking.useDHCP = true;
 }
