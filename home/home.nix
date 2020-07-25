@@ -231,7 +231,7 @@ in
 
   programs.ssh = {
     enable = true;
-    extraConfig = private.aicSshConfig + private.nySshConfig;
+    extraConfig = private.SSHConfig;
   };
 
   home.stateVersion = "20.03";
