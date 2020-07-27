@@ -13,7 +13,14 @@ in
 
   imports =
     if isNixOS
-    then [ ./gui.nix ./tex.nix ./delta.nix ./vim.nix ./rust.nix ] else
+    then [
+      ./gui.nix
+      ./tex.nix
+      ./delta.nix
+      ./vim.nix
+      ./rust.nix
+      ./newsboat.nix
+    ] else
       if host == "ubuntu-container"
       then [ ./ubuntu.nix ./vim.nix ./rust.nix ] else [];
 
@@ -59,7 +66,6 @@ in
       mosh
       ncdu
       neofetch
-      newsboat
       nload
       nkf
       # unfortunately, nmap clashes with nmap-graphical; nothing we can do about this
