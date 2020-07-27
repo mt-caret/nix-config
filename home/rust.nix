@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  unstable = import ./unstable.nix;
+  unstable = import ../common/unstable.nix;
   # bumped on 2020-06-27
   rust-overlay-src =
     builtins.fetchGit {

@@ -1,6 +1,6 @@
 { host, config, pkgs, ... }:
 let
-  unstable = import ./unstable.nix;
+  unstable = import ../common/unstable.nix;
   xmonad = pkgs.xmonad-with-packages.override {
     packages = self: [
       self.xmonad-contrib
@@ -47,7 +47,7 @@ in
     with unstable; [
       # unstable-packages
       keepassxc
-      torbrowser
+      #torbrowser
       veracrypt
       slack
     ]

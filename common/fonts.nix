@@ -1,4 +1,7 @@
 { config, lib, pkgs, ... }:
+let
+  unstable = import ./unstable.nix;
+in
 {
   fonts = {
     enableFontDir = true;
@@ -13,7 +16,7 @@
       noto-fonts-cjk
       noto-fonts-emoji
       source-code-pro
-      rictydiminished-with-firacode
+      unstable.rictydiminished-with-firacode
       vistafonts
       source-han-code-jp
       yanone-kaffeesatz

@@ -1,6 +1,6 @@
 host: { config, pkgs, lib, ... }:
 let
-  unstable = import ./unstable.nix;
+  unstable = import ../common/unstable.nix;
   isNixOS = host == "athena" || host == "apollo" || host == "artemis";
   private = import ../../private/default.nix;
 in
