@@ -145,7 +145,6 @@ in
             if host == "apollo" then 42 else 30;
       in
         ''
-          ${pkgs.xorg.xset}/bin/xset r rate 220 50
           light -S 0.2
           amixer -q sset Master 0%
           amixer -q sset Master mute
@@ -180,8 +179,8 @@ in
             --tint 0x000000 \
             --monitor primary \
             & disown
-          xhost +local:
-          xset r rate 200 40
+          ${pkgs.xorg.xhost}/bin/xhost +local:
+          ${pkgs.xorg.xset}/bin/xset r rate 200 40
           [ -d /root-blank ] &&
             notify-send -u critical "opt-in state" "rollback failed"
         '';

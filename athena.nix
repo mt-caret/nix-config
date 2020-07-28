@@ -12,15 +12,15 @@ rec {
 
   networking.hostName = "athena";
 
-  hardware.opengl = {
-    #driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
-      intel-ocl
-    ];
-  };
+  #hardware.opengl = {
+  #  #driSupport32Bit = true;
+  #  extraPackages = with pkgs; [
+  #    vaapiIntel
+  #    vaapiVdpau
+  #    libvdpau-va-gl
+  #    #intel-ocl
+  #  ];
+  #};
 
   boot = {
     # Use the systemd-boot EFI boot loader.
