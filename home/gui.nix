@@ -11,45 +11,45 @@ let
 in
 {
   imports = [ ./vscode.nix ];
-  home.packages = with pkgs; [
-    anki
-    arandr
-    discord
-    dragon-drop
-    evince
-    gimp
-    gksu
-    gparted
-    libreoffice
-    unoconv # cli tool, but depends on libreoffice
-    mpv
-    nmap-graphical
-    obs-studio
-    pavucontrol
-    puddletag
-    pdfpc
-    signal-desktop
-    thunderbird
-    transmission-gtk
-    vlc
-    #(vlc.override { libbluray = libbluray.override {
-    #  withAACS = true;
-    #  withBDplus = true;
-    #}; })
-    #aacskeys # keys for Blu-ray
-    wireshark
-    xdotool
-    xorg.xhost
-    xsel
-    xorg.xmessage
-    xdg_utils
-  ] ++ (
-    with unstable; [
+  home.packages = (
+    with pkgs; [
+      anki
+      arandr
+      discord
+      dragon-drop
+      evince
+      gimp
+      gksu
+      gparted
+      libreoffice
+      unoconv # cli tool, but depends on libreoffice
+      mpv
+      nmap-graphical
+      obs-studio
+      pavucontrol
+      puddletag
+      pdfpc
+      signal-desktop
+      thunderbird
+      transmission-gtk
+      vlc
+      #(vlc.override { libbluray = libbluray.override {
+      #  withAACS = true;
+      #  withBDplus = true;
+      #}; })
+      #aacskeys # keys for Blu-ray
+      wireshark
+      xdotool
+      xorg.xhost
+      xsel
+      xorg.xmessage
+      xdg_utils
+
       # unstable-packages
-      keepassxc
-      #torbrowser
-      veracrypt
-      slack
+      unstable.keepassxc
+      #unstable.tor-browser-bundle-bin
+      unstable.veracrypt
+      unstable.slack
     ]
   );
 

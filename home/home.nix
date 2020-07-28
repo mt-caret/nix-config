@@ -119,17 +119,16 @@ in
           ]
         )
       )
+
+      unstable.dejsonlz4
+      unstable.youtube-dl
+      unstable.gallery-dl
+      unstable.clinfo
+      unstable.stack
     ]
-  ) ++ (
-    with unstable; [
-      dejsonlz4
-      youtube-dl
-      gallery-dl
-      clinfo
-      stack
-    ] ++ (
+    ++ (
       if isNixOS
-      then [ haskellPackages.haskell-language-server ]
+      then [ unstable.haskell.packages.ghc883.haskell-language-server ]
       else []
     )
   );
