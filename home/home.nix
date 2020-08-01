@@ -206,6 +206,9 @@ in
         bind-key -r C-l select-window -t :+
 
         bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xsel --input --clipboard"
+
+        set-option -g set-titles on
+        set-option -g set-titles-string "#S / #W"
       '';
     };
   };

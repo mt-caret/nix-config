@@ -139,56 +139,60 @@ in
   xsession = {
     enable = true;
     profileExtra =
-      let
-        trayerHeight =
-          if host == "artemis" then 36 else
-            if host == "apollo" then 42 else 30;
-      in
-        ''
-          light -S 0.2
-          amixer -q sset Master 0%
-          amixer -q sset Master mute
+      ''
+        light -S 0.2
+        amixer -q sset Master 0%
+        amixer -q sset Master mute
 
-          case $(hostname) in
-            artemis)
-              xrandr \
-                --output DVI-D-0 --mode 1920x1080 --pos 0x0 --rotate normal \
-                --output HDMI-0 --off \
-                --output DP-0 --off \
-                --output DP-1 --off \
-                --output DP-2 --off \
-                --output DP-3 --off \
-                --output DP-4 --primary --mode 3840x2160 --pos 1920x0 --rotate normal \
-                --output DP-5 --off
-              ;;
-            *)
-              echo unknown host
-              ;;
-          esac
+        case $(hostname) in
+          artemis)
+            xrandr \
+              --output DVI-D-0 --mode 1920x1080 --pos 0x0 --rotate normal \
+              --output HDMI-0 --off \
+              --output DP-0 --off \
+              --output DP-1 --off \
+              --output DP-2 --off \
+              --output DP-3 --off \
+              --output DP-4 --primary --mode 3840x2160 --pos 1920x0 --rotate normal \
+              --output DP-5 --off
+            ;;
+          *)
+            echo unknown host
+            ;;
+        esac
 
-          feh --bg-fill ~/sync/wallpapers/hit_the_floor_4k.png
-          trayer \
-            --edge top \
-            --align right \
-            --SetDockType true \
-            --SetPartialStrut true \
-            --expand true \
-            --width 8 \
-            --height ${builtins.toString trayerHeight} \
-            --transparent true \
-            --tint 0x000000 \
-            --monitor primary \
-            & disown
-          ${pkgs.xorg.xhost}/bin/xhost +local:
-          ${pkgs.xorg.xset}/bin/xset r rate 200 40
-          [ -d /root-blank ] &&
-            notify-send -u critical "opt-in state" "rollback failed"
-        '';
+        feh --bg-fill ~/sync/wallpapers/hit_the_floor_4k.png
+        ${pkgs.xorg.xhost}/bin/xhost +local:
+        ${pkgs.xorg.xset}/bin/xset r rate 200 40
+        [ -d /root-blank ] &&
+          notify-send -u critical "opt-in state" "rollback failed"
+      '';
     pointerCursor = {
       package = pkgs.vanilla-dmz;
       name = "Vanilla-DMZ";
       size = 24;
     };
     windowManager.command = "${xmonad}/bin/xmonad";
+  };
+
+  services.status-notifier-watcher.enable = true;
+  services.xembed-sni-proxy.enable = true;
+  services.taffybar = {
+    enable = true;
+    package = unstable.taffybar;
+  };
+
+  # https://github.com/polybar/polybar/issues/913#issue-282734480
+  home.sessionVariables.XDG_CURRENT_DESKTOP = "Unity";
+
+  xdg.configFile = {
+    "taffybar/taffybar.hs" = {
+      source = ../taffybar/taffybar.hs;
+      onChange = "rm -rf ~/.cache/taffybar/";
+    };
+    "taffybar/taffybar.css" = {
+      source = ../taffybar/taffybar.css;
+      onChange = "rm -rf ~/.cache/taffybar/";
+    };
   };
 }
