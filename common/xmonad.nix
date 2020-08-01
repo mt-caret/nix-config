@@ -4,42 +4,29 @@
     enable = true;
     displayManager = {
       lightdm.enable = true;
-      sessionCommands = ''
-        ${pkgs.xorg.xset}/bin/xset r rate 220 50
-      '';
       defaultSession = "none+xmonad";
     };
-    windowManager.xmonad = {
-      enable = true;
-      enableContribAndExtras = true;
-      extraPackages = haskellPackages: [
-        haskellPackages.hostname
-      ];
-    };
+    windowManager.xmonad.enable = true;
     desktopManager.xterm.enable = false;
   };
   services.upower.enable = true;
   environment = {
     systemPackages = with pkgs; [
-      haskellPackages.xmobar
-      trayer
       rofi
       feh
-
-      udiskie
-      networkmanagerapplet
-      copyq
 
       libnotify
       dunst
 
-      plasma-workspace # for xembedsniproxy
-
       # gtk icons & themes
       # c.f. https://github.com/cstrahan/nixos-config/blob/master/system-packages.nix
-      hicolor-icon-theme
+      gtk2
       gnome3.defaultIconTheme
-      gnome3.gnome_themes_standard
+      gnome3.adwaita-icon-theme
+      gnome3.gnome-themes-standard
+      gnome3.gnome-themes-extra
+      hicolor-icon-theme
+      tango-icon-theme
       shared-mime-info
     ];
     pathsToLink = [
@@ -57,5 +44,6 @@
       ];
     };
   };
+  gtk.iconCache.enable = true;
   programs.slock.enable = true;
 }
