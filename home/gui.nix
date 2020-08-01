@@ -179,7 +179,14 @@ in
   services.xembed-sni-proxy.enable = true;
   services.taffybar = {
     enable = true;
-    package = unstable.taffybar;
+    package = unstable.taffybar.override {
+      packages = p: [
+        p.alsa-core
+        p.alsa-mixer
+        p.mtl
+        p.text
+      ];
+    };
   };
 
   # https://github.com/polybar/polybar/issues/913#issue-282734480
