@@ -7,8 +7,8 @@
       sessionCommands = ''
         ${pkgs.xorg.xset}/bin/xset r rate 220 50
       '';
+      defaultSession = "none+xmonad";
     };
-    displayManager.defaultSession = "none+xmonad";
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
