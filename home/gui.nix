@@ -2,9 +2,9 @@
 let
   unstable = import ../common/unstable.nix;
   xmonad = pkgs.xmonad-with-packages.override {
-    packages = self: [
-      self.xmonad-contrib
-      self.hostname
+    packages = p: [
+      p.xmonad-contrib
+      p.hostname
     ];
   };
   hidpi = host == "artemis" || host == "apollo";
@@ -181,6 +181,7 @@ in
     enable = true;
     package = unstable.taffybar.override {
       packages = p: [
+        p.hostname
         p.alsa-core
         p.alsa-mixer
         p.mtl

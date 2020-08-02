@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+import Network.HostName (getHostName)
 import Control.Monad ((<=<))
 import Control.Monad.Trans (liftIO)
 import Data.Maybe (fromMaybe)
@@ -84,8 +85,8 @@ windowsConfig =
       WI.getActiveLabel = WI.truncatedGetActiveLabel 70
     }
 
-exampleTaffybarConfig :: TaffybarConfig
-exampleTaffybarConfig =
+exampleTaffybarConfig :: String -> TaffybarConfig
+exampleTaffybarConfig hostname =
   let workspaces = workspacesNew workspaceConfig
       bat = B.textBatteryNew "bat: $percentage$ ($time$)"
       cpu = U.setMinWidth 70 =<< C.textCpuMonitorNew "cpu: $total$" 3.0
@@ -118,7 +119,7 @@ exampleTaffybarConfig =
                   net
                 ],
             barPosition = Top,
-            barHeight = 35,
+            barHeight = getBarHeight hostname,
             widgetSpacing = 0
           }
    in withBatteryRefresh
@@ -126,4 +127,10 @@ exampleTaffybarConfig =
         $ withToggleServer
         $ toTaffyConfig myConfig
 
-main = startTaffybar exampleTaffybarConfig
+getBarHeight :: String -> Int
+getBarHeight "artemis" = 50
+getBarHeight _ = 35
+
+main = do
+  hostname <- getHostName
+  startTaffybar $ exampleTaffybarConfig hostname
