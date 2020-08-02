@@ -1,10 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-import Network.HostName (getHostName)
 import Control.Monad ((<=<))
 import Control.Monad.Trans (liftIO)
-import Data.Maybe (fromMaybe)
 import Control.Monad.Trans.Maybe
+import Data.Maybe (fromMaybe)
+import Network.HostName (getHostName)
 import qualified Data.Text as T
 import qualified Sound.ALSA.Exception as AE
 import qualified Sound.ALSA.Mixer as A
@@ -49,7 +49,7 @@ getVolumeInfo =
 
 formatVolume :: (Integer, Bool) -> T.Text
 formatVolume (volume, switch) =
-  T.pack $ printf "vol: %d%% %s" volume switchStr
+  T.pack $ printf "vol: %d%%%s" volume switchStr
   where
     switchStr :: String
     switchStr =
@@ -88,7 +88,7 @@ windowsConfig =
 exampleTaffybarConfig :: String -> TaffybarConfig
 exampleTaffybarConfig hostname =
   let workspaces = workspacesNew workspaceConfig
-      bat = B.textBatteryNew "bat: $percentage$ ($time$)"
+      bat = B.textBatteryNew "bat: $percentage$%($time$)"
       cpu = U.setMinWidth 70 =<< C.textCpuMonitorNew "cpu: $total$" 3.0
       mem = U.setMinWidth 100 =<< M.textMemoryMonitorNew "mem: $used$ / $total$" 3.0
       net = U.setMinWidth 170 =<< N.networkMonitorNew N.defaultNetFormat Nothing
