@@ -99,7 +99,8 @@ exampleTaffybarConfig hostname =
       tray = sniTrayNew
       myConfig =
         defaultSimpleTaffyConfig
-          { startWidgets =
+          { monitorsAction = usePrimaryMonitor,
+            startWidgets =
               workspaces : map (>>= buildContentsBox) [layout, windowsW],
             endWidgets =
               map
