@@ -30,7 +30,9 @@ in
       atool
       ffmpegthumbnailer # for video previews
       mediainfo
-      p7zip # for atool
+      # what a shame:
+      # https://github.com/NixOS/nixpkgs/blob/54f5bff2b5e02a5a6ac0d8f8caf6716cd2a22bd5/pkgs/tools/archivers/p7zip/default.nix#L65
+      # p7zip # for atool
       ranger
       ueberzug # for image previews
       unrar # for atool
