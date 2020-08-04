@@ -56,6 +56,16 @@ let
                 lib.attrsets.mapAttrsToList toClusterEntry addressMap;
               initialClusterState = "new";
             };
+
+        # Workaround for nixos-container issue
+        # (see https://github.com/NixOS/nixpkgs/issues/67265 and
+        # https://github.com/NixOS/nixpkgs/pull/81371#issuecomment-605526099).
+        # The etcd service is of type "notify", which means that
+        # etcd would not be considered started until etcd is fully online;
+        # however, since networking only works sometime *after*
+        # multi-user.target, we forgo etcd's notification entirely.
+        systemd.services.etcd.serviceConfig.Type = lib.mkForce "exec";
+
         networking.firewall.allowedTCPPorts = [ 2379 2380 ];
       };
   };
