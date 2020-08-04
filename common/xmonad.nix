@@ -25,9 +25,11 @@
       gnome3.adwaita-icon-theme
       gnome3.gnome-themes-standard
       gnome3.gnome-themes-extra
+      gnome2.gnome_icon_theme
       hicolor-icon-theme
       tango-icon-theme
       shared-mime-info
+      breeze-icons
     ];
     pathsToLink = [
       "/share"
