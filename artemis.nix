@@ -8,7 +8,6 @@ rec {
     ./common/xmonad.nix
     ./common/adblock.nix
     <home-manager/nixos>
-    ./common/etcd-cluster.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
