@@ -18,7 +18,6 @@ import qualified System.Taffybar.Widget.Generic.PollingLabel as PL
 import qualified System.Taffybar.Widget.SimpleClock as SC
 import qualified System.Taffybar.Widget.Text.CPUMonitor as C
 import qualified System.Taffybar.Widget.Text.MemoryMonitor as M
-import qualified System.Taffybar.Widget.Text.NetworkMonitor as N
 import qualified System.Taffybar.Widget.Util as U
 import qualified System.Taffybar.Widget.Windows as WI
 import Text.Printf (printf)
@@ -91,7 +90,6 @@ exampleTaffybarConfig hostname =
       bat = B.textBatteryNew "bat: $percentage$%($time$)"
       cpu = U.setMinWidth 70 =<< C.textCpuMonitorNew "cpu: $total$" 3.0
       mem = U.setMinWidth 100 =<< M.textMemoryMonitorNew "mem: $used$ / $total$" 3.0
-      net = U.setMinWidth 170 =<< N.networkMonitorNew N.defaultNetFormat Nothing
       vol = U.setMinWidth 100 =<< textVolumeMonitorNew 0.1
       clock = SC.textClockNewWith clockConfig
       layout = layoutNew defaultLayoutConfig
@@ -99,8 +97,7 @@ exampleTaffybarConfig hostname =
       tray = sniTrayNew
       myConfig =
         defaultSimpleTaffyConfig
-          { monitorsAction = usePrimaryMonitor,
-            startWidgets =
+          { startWidgets =
               workspaces : map (>>= buildContentsBox) [layout, windowsW],
             endWidgets =
               map
@@ -115,9 +112,7 @@ exampleTaffybarConfig hostname =
                   bar,
                   cpu,
                   bar,
-                  mem,
-                  bar,
-                  net
+                  mem
                 ],
             barPosition = Top,
             barHeight = getBarHeight hostname,
