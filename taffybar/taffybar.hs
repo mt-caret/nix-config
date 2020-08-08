@@ -125,6 +125,7 @@ exampleTaffybarConfig hostname =
 
 getBarHeight :: String -> Int
 getBarHeight "artemis" = 50
+getBarHeight "apollo" = 60
 getBarHeight _ = 35
 
 main = do
