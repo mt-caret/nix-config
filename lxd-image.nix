@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 {
   # https://github.com/NixOS/nixpkgs/issues/9735#issuecomment-500164017
   systemd.services."console-getty".enable = false;

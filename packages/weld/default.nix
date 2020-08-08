@@ -1,5 +1,4 @@
-{ stdenv
-, fetchFromGitHub
+{ fetchFromGitHub
 , rustPlatform
 , llvmPackages_6
 , libxml2

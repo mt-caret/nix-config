@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   unstable = import ../common/unstable.nix;
   # bumped on 2020-06-27

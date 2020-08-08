@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   ionide-fsharp = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
     mktplcRef = {

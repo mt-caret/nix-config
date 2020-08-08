@@ -1,4 +1,4 @@
-host: { config, pkgs, lib, ... }:
+host: { pkgs, lib, ... }:
 let
   unstable = import ../common/unstable.nix;
   isNixOS = host == "athena" || host == "apollo" || host == "artemis";
@@ -69,6 +69,7 @@ in
       mosh
       ncdu
       neofetch
+      nix-linter
       nload
       nkf
       # unfortunately, nmap clashes with nmap-graphical; nothing we can do about this

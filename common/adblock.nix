@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   hosts-src =
     pkgs.fetchFromGitHub {

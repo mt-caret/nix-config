@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 let
   private = import ../../private/default.nix;
 in

@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, runCommand }:
+{ stdenv, fetchFromGitHub }:
 stdenv.mkDerivation rec {
   pname = "btrfs-du";
   version = "2020-06-16";

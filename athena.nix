@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 rec {
   imports = [
     /etc/nixos/hardware-configuration.nix
