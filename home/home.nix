@@ -43,6 +43,7 @@ in
       axel
       bc
       bind
+      cachix
       cmus
       colordiff
       comma

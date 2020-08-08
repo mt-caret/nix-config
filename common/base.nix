@@ -136,6 +136,7 @@ in
     useSandbox = true;
     daemonNiceLevel = 10;
     maxJobs = "auto";
+    trustedUsers = [ "root" "delta" ];
   };
   nixpkgs = {
     config = import ./nixpkgs-config.nix;
