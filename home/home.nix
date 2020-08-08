@@ -41,6 +41,7 @@ in
       # shell-tools
       aria2
       axel
+      bat
       bc
       bind
       cmus
