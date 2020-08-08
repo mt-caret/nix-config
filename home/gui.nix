@@ -17,10 +17,12 @@ in
       arandr
       discord
       dragon-drop
+      element-desktop
       evince
       gimp
       gksu
       gparted
+      handbrake
       libreoffice
       unoconv # cli tool, but depends on libreoffice
       mpv
@@ -39,11 +41,13 @@ in
       #}; })
       #aacskeys # keys for Blu-ray
       wireshark
+      wire-desktop
       xdotool
       xorg.xhost
       xsel
       xorg.xmessage
       xdg_utils
+      zoom-us
 
       # unstable-packages
       unstable.keepassxc
