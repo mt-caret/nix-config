@@ -217,6 +217,11 @@ in
     };
   };
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
   nixpkgs = {
     config = import ../common/nixpkgs-config.nix;
     overlays = [ (import ../common/overlay.nix) ];
