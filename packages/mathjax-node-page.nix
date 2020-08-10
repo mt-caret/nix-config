@@ -1,5 +1,5 @@
 # see https://www.colabug.com/2017/0803/750573/
-{ runCommand, fetchFromGitHub, nodePackages }:
+{ runCommand, fetchFromGitHub, nodePackages, callPackage }:
 let
   # 2020-07-16
   src = fetchFromGitHub {
@@ -15,4 +15,4 @@ let
     ${nodePackages.node2nix}/bin/node2nix -l package-lock.json
   '';
 in
-"${fixedSrc}"
+(callPackage "${fixedSrc}" {}).package

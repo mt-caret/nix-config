@@ -1,4 +1,4 @@
-{ fetchFromGitHub }:
+{ pkgs, fetchFromGitHub }:
 let
   # 2020-04-29
   commaSrc = fetchFromGitHub {
@@ -8,4 +8,4 @@ let
     sha256 = "0n5a3rnv9qnnsrl76kpi6dmaxmwj1mpdd2g0b4n1wfimqfaz6gi1";
   };
 in
-import "${commaSrc}"
+pkgs.callPackage "${commaSrc}" {}

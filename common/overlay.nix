@@ -1,10 +1,10 @@
 _self: super:
 with super; {
   weld = callPackage ../packages/weld {};
-  comma = callPackage (callPackage ../packages/comma.nix {}) {};
+  comma = callPackage ../packages/comma.nix {};
   btrfs-du = callPackage ../packages/btrfs-du.nix {};
   nixos-generators = callPackage ../packages/nixos-generators.nix {};
-  mathjax-node-page = (callPackage (callPackage ../packages/mathjax-node-page.nix {}) {}).package;
+  mathjax-node-page = callPackage ../packages/mathjax-node-page.nix {};
   ghidra-hidpi = ghidra-bin.overrideAttrs (
     _oldAttrs: {
       postPath = ''
