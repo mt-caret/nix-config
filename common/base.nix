@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 let
   private = import ../../private/default.nix;
 in
@@ -136,6 +136,7 @@ in
     useSandbox = true;
     daemonNiceLevel = 10;
     maxJobs = "auto";
+    trustedUsers = [ "root" "delta" ];
   };
   nixpkgs = {
     config = import ./nixpkgs-config.nix;

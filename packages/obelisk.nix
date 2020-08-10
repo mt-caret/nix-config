@@ -1,4 +1,4 @@
-{ fetchFromGitHub, pkgs }:
+{ fetchFromGitHub }:
 let
   # 2020-07-10
   src = fetchFromGitHub {

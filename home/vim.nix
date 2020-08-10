@@ -1,4 +1,4 @@
-{ isNixOS, config, pkgs, ... }:
+{ isNixOS, pkgs, ... }:
 let
   unstable = import ../common/unstable.nix;
 in

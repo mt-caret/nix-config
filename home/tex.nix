@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   home.packages = [ pkgs.texlive.combined.scheme-full ];
 }

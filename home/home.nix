@@ -1,4 +1,4 @@
-host: { config, pkgs, lib, ... }:
+host: { pkgs, lib, ... }:
 let
   unstable = import ../common/unstable.nix;
   isNixOS = host == "athena" || host == "apollo" || host == "artemis";
@@ -44,6 +44,7 @@ in
       bat
       bc
       bind
+      cachix
       cmus
       colordiff
       comma
@@ -69,6 +70,7 @@ in
       mosh
       ncdu
       neofetch
+      nix-linter
       nload
       nkf
       # unfortunately, nmap clashes with nmap-graphical; nothing we can do about this
@@ -214,6 +216,11 @@ in
         set-option -g set-titles-string "#S / #W"
       '';
     };
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
   };
 
   nixpkgs = {

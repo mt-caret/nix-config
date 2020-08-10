@@ -1,4 +1,4 @@
-{ host, config, pkgs, ... }:
+{ host, pkgs, ... }:
 let
   unstable = import ../common/unstable.nix;
   xmonad = pkgs.xmonad-with-packages.override {

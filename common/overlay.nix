@@ -1,4 +1,4 @@
-self: super:
+_self: super:
 with super; {
   weld = callPackage ../packages/weld {};
   comma = callPackage (callPackage ../packages/comma.nix {}) {};
@@ -6,7 +6,7 @@ with super; {
   nixos-generators = callPackage ../packages/nixos-generators.nix {};
   mathjax-node-page = (callPackage (callPackage ../packages/mathjax-node-page.nix {}) {}).package;
   ghidra-hidpi = ghidra-bin.overrideAttrs (
-    oldAttrs: {
+    _oldAttrs: {
       postPath = ''
         substituteInPlace ./support/launch.properties \
           --replace "Dsun.java2d.uiScale=1" "Dsun.java2d.uiScale=2"
