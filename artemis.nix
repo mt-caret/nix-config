@@ -8,6 +8,7 @@ rec {
     ./common/xmonad.nix
     ./common/adblock.nix
     <home-manager/nixos>
+    ./common/dqlite-cluster.nix
   ];
 
   boot.loader.systemd-boot.enable = true;

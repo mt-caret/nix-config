@@ -14,4 +14,5 @@ with super; {
     }
   );
   obelisk = callPackage ../packages/obelisk.nix {};
+  go-dqlite = callPackage ../packages/go-dqlite.nix {};
 }
