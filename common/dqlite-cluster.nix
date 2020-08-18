@@ -49,19 +49,22 @@ let
               if hostName == "n1" then
                 ''
                   ${unstable.go-dqlite}/bin/dqlite-demo \
-                    --api 0.0.0.0:8000 \
-                    --db 0.0.0.0:9000 \
+                    --api ${localAddress}:8000 \
+                    --db ${localAddress}:9000 \
+                    --dir /run/dqlite \
                     --verbose
                 ''
               else
                 ''
                   ${unstable.go-dqlite}/bin/dqlite-demo \
-                    --api 0.0.0.0:8000 \
-                    --db 0.0.0.0:9000 \
+                    --api ${localAddress}:8000 \
+                    --db ${localAddress}:9000 \
                     --join 10.233.0.101:9000 \
+                    --dir /run/dqlite \
                     --verbose
                 '';
             User = "dqlite";
+            RuntimeDirectory = "dqlite";
 
             StandardOutput = "file:/var/log/dqlite.log";
             StandardError = "file:/var/log/dqlite.log";
@@ -75,6 +78,8 @@ let
           description = "Dqlite daemon user";
           home = "/var/lib/dqlite";
         };
+
+        networking.firewall.allowedTCPPorts = [ 8000 9000 ];
       };
   };
 in
