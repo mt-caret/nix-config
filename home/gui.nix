@@ -174,7 +174,7 @@ in
     pointerCursor = {
       package = pkgs.vanilla-dmz;
       name = "Vanilla-DMZ";
-      size = 24;
+      size = if host == "apollo" then 48 else 24;
     };
     windowManager.command = "${xmonad}/bin/xmonad";
   };
