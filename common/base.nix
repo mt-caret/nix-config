@@ -135,6 +135,7 @@ in
   nix = {
     useSandbox = true;
     daemonNiceLevel = 10;
+    daemonIONiceLevel = 5;
     maxJobs = "auto";
     trustedUsers = [ "root" "delta" ];
   };
