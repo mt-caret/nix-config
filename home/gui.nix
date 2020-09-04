@@ -61,6 +61,7 @@ in
     firefox.enable = true;
     chromium = {
       enable = true;
+      #package = pkgs.chromium-with-flash;
       extensions = [
         "gcbommkclmclpchllfjekcdonpmejbdp" # HTTPS Everywhere
         "dpaohcncbmkojcpcjaojcehdlnjfbjkl" # Pinboard
