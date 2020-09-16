@@ -59,6 +59,8 @@ in
       gnuplot
       go-pup
       graphviz
+      hledger
+      hledger-web
       htop
       imagemagickBig
       inotify-tools
@@ -197,6 +199,8 @@ in
         if [ -d ~/.opam ]; then
           eval "$(opam config env)"
         fi
+
+        export LEDGER_FILE="$HOME/sync/finance/$(date '+%Y').journal"
       '';
     };
     tmux = {
