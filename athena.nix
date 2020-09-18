@@ -6,7 +6,7 @@ rec {
     ./common/fonts.nix
     ./common/ime.nix
     ./common/xmonad.nix
-    ./common/adblock.nix
+    #./common/adblock.nix
     <home-manager/nixos>
   ];
 
@@ -91,9 +91,9 @@ rec {
     };
   };
 
-  #time.timeZone = "Asia/Hong_Kong";
+  time.timeZone = "Asia/Hong_Kong";
   #time.timeZone = "America/New_York";
-  time.timeZone = "Asia/Tokyo";
+  #time.timeZone = "Asia/Tokyo";
 
   #services.usbmuxd.enable = true;
 

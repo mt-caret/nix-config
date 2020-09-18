@@ -46,8 +46,6 @@ rec {
     kbdlight.enable = true;
   };
 
-  time.timeZone = "Asia/Tokyo";
-
   services.xserver.libinput = {
     enable = true;
     accelSpeed = "1.0";
