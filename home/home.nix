@@ -219,6 +219,9 @@ in
         set-option -g set-titles on
         set-option -g set-titles-string "#S / #W"
       '';
+
+      # https://github.com/NixOS/nixpkgs/issues/91185#issuecomment-647155143
+      secureSocket = host != "ubuntu-container";
     };
   };
 
