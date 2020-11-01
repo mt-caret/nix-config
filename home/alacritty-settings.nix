@@ -63,6 +63,6 @@ hidpi: {
   };
 
   background_opacity = 0.8;
-  dynamic_title = true;
+  window.dynamic_title = true;
   mouse.hide_when_typing = true;
 }
