@@ -81,7 +81,7 @@ in
       optipng
       # haskellPackages.patat # broken in nixos-19.03
       pandoc
-      haskellPackages.pandoc-sidenote
+      # haskellPackages.pandoc-sidenote # broken in nixos-20.09
       haskellPackages.pandoc-crossref # broken in nixpkgs-unstable
       parallel
       pijul

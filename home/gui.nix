@@ -29,7 +29,7 @@ in
       nmap-graphical
       obs-studio
       pavucontrol
-      puddletag
+      # puddletag # broken in nixos-20.09
       pdfpc
       signal-desktop
       thunderbird
