@@ -53,6 +53,10 @@ rec {
     tappingDragLock = false;
   };
 
+  time.timeZone = "Asia/Hong_Kong";
+  #time.timeZone = "America/New_York";
+  #time.timeZone = "Asia/Tokyo";
+
   environment.etc = {
     nixos.source = "/persist/etc/nixos";
     "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections";
