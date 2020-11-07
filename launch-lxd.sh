@@ -19,7 +19,7 @@ EOF
   ln -sf ~/config/nix-config/ubuntu.nix ~/.config/nixpkgs/home.nix
 
   echo "switching to new home-manager config..."
-  home-manager switch
+  home-manager switch -b old
 
   echo "container setup done, shutting down..."
   sudo poweroff
