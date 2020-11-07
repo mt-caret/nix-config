@@ -6,17 +6,17 @@
 }:
 buildGoModule rec {
   pname = "toolbox";
-  version = "0.0.92";
+  version = "0.0.97";
 
   src = fetchFromGitHub {
     owner = "containers";
     repo = "toolbox";
-    rev = "cb5c77eae5b4cf4ea2d2970aaf88efeb1ccfc338";
-    sha256 = "0lqrhqpi012m9qadh9lgqmqshfwfkmfd0h5nfg7692rza0gkiy85";
+    rev = "3cbd2a1343e614a4064f9650c5e0b466ae3cfb94";
+    sha256 = "0x46sn8wcrnhkv63gcnh54n6g47b3rzzmnh0apcs62xywvfkcvir";
   };
   sourceRoot = "source/src";
 
-  vendorSha256 = "1dvcwg0hzababiww3r2zv188nkxrisppng1izx9j1d3zs4h3bx22";
+  vendorSha256 = "06s97kpbw40571jjp96jpld1qxb2frd4akcrwwxi1minvs24lb5p";
 
   nativeBuildInputs = [
     go-md2man
