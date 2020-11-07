@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  unstable = import ./unstable.nix;
+  unstable = import ../nixpkgs/unstable.nix;
 in
 {
   fonts = {

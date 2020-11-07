@@ -1,4 +1,4 @@
 import <unstable> {
-  config = import ./nixpkgs-config.nix;
+  config = import ./config.nix;
   overlays = [ (import ./overlay.nix) ];
 }

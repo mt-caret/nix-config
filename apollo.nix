@@ -3,11 +3,11 @@ rec {
   imports =
     [
       /etc/nixos/hardware-configuration.nix
-      ./common/base.nix
-      ./common/fonts.nix
-      ./common/ime.nix
-      ./common/xmonad.nix
-      ./common/adblock.nix
+      ./nixos/base.nix
+      ./nixos/fonts.nix
+      ./nixos/ime.nix
+      ./nixos/xmonad.nix
+      ./nixos/adblock.nix
       <home-manager/nixos>
     ];
 

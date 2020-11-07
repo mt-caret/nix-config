@@ -140,7 +140,7 @@ in
     trustedUsers = [ "root" "delta" ];
   };
   nixpkgs = {
-    config = import ./nixpkgs-config.nix;
-    overlays = [ (import ../common/overlay.nix) ];
+    config = import ../nixpkgs/config.nix;
+    overlays = [ (import ../nixpkgs/overlay.nix) ];
   };
 }

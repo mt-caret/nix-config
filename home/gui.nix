@@ -1,6 +1,6 @@
 { host, lib, pkgs, ... }:
 let
-  unstable = import ../common/unstable.nix;
+  unstable = import ../nixpkgs/unstable.nix;
   xmonad = pkgs.xmonad-with-packages.override {
     packages = p: [
       p.xmonad-contrib

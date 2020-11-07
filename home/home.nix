@@ -1,6 +1,6 @@
 host: { pkgs, lib, ... }:
 let
-  unstable = import ../common/unstable.nix;
+  unstable = import ../nixpkgs/unstable.nix;
   isNixOS = host == "athena" || host == "apollo" || host == "artemis";
   private = import ../../private/default.nix;
 in
@@ -232,18 +232,18 @@ in
   };
 
   nixpkgs = {
-    config = import ../common/nixpkgs-config.nix;
-    overlays = [ (import ../common/overlay.nix) ];
+    config = import ../nixpkgs/config.nix;
+    overlays = [ (import ../nixpkgs/overlay.nix) ];
   };
-  xdg.configFile."nixpkgs/config.nix".source = ../common/nixpkgs-config.nix;
+  xdg.configFile."nixpkgs/config.nix".source = ../nixpkgs/config.nix;
 
   # We would like to use xdg.configFile here as well, but doing that will
   # break the relative imports inside the file, so we symlink it instead.
   # Note this implicitly assumes that the config directory exists at $HOME/config.
-  #xdg.configFile."nixpkgs/overlays/overlay.nix".source = ../common/overlay.nix;
+  #xdg.configFile."nixpkgs/overlays/overlay.nix".source = ../nixpkgs/overlay.nix;
   home.activation.linkOverlay = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD mkdir -p $VERBOSE_ARG ~/.config/nixpkgs/overlays/
-    $DRY_RUN_CMD ln -sf $VERBOSE_ARG $HOME/config/nix-config/common/overlay.nix \
+    $DRY_RUN_CMD ln -sf $VERBOSE_ARG $HOME/config/nix-config/nixpkgs/overlay.nix \
       ~/.config/nixpkgs/overlays/mutable-overlay.nix
   '';
 

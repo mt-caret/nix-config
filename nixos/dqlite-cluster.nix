@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 let
-  #unstable = import ./unstable.nix;
+  #unstable = import ../nixpkgs/unstable.nix;
   unstable = import (fetchTarball https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz) {
-    config = import ./nixpkgs-config.nix;
-    overlays = [ (import ./overlay.nix) ];
+    config = import ../nixpkgs/config.nix;
+    overlays = [ (import ../nixpkgs/overlay.nix) ];
   };
   addressMap =
     {
