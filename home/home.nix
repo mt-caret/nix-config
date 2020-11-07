@@ -50,7 +50,6 @@ in
       colordiff
       comma
       convmv
-      docker_compose
       dstat
       entr
       exiftool
@@ -91,6 +90,7 @@ in
       runzip
       shellcheck
       tokei
+      toolbox
       tree
       whois
       zip

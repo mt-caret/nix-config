@@ -33,7 +33,17 @@ in
     users = {
       delta = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "networkmanager" "libvirtd" "docker" "lxd" "vboxusers" "dialout" "kvm" "render" "video" ];
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+          "libvirtd"
+          "lxd"
+          "vboxusers"
+          "dialout"
+          "kvm"
+          "render"
+          "video"
+        ];
         hashedPassword = private.deltaHashedPassword;
       };
       root = {
@@ -58,8 +68,11 @@ in
     sudo.enable = true;
   };
 
+  virtualisation.podman.enable = true;
+  services.flatpak.enable = true;
+  xdg.portal.enable = true;
+
   virtualisation = {
-    docker.enable = true;
     virtualbox.host = {
       enable = true;
       enableExtensionPack = true;
