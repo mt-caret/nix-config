@@ -28,6 +28,7 @@ in
     with pkgs; [
       # ranger-tools
       atool
+      atop
       ffmpegthumbnailer # for video previews
       mediainfo
       # what a shame:
