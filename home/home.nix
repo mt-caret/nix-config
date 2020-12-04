@@ -202,6 +202,8 @@ in
         fi
 
         export LEDGER_FILE="$HOME/sync/finance/$(date '+%Y').journal"
+
+        alias p=pijul
       '';
     };
     tmux = {

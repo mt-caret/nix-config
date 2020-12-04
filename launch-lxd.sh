@@ -7,7 +7,7 @@ run_inside_container() {
 
   echo "setting up nix..."
   . /home/ubuntu/.nix-profile/etc/profile.d/nix.sh
-  cat > .nix-channels <<EOF
+  cat > .nix-channels << EOF
 https://nixos.org/channels/nixos-20.09 nixpkgs
 https://nixos.org/channels/nixos-unstable unstable
 https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz home-manager
@@ -49,7 +49,16 @@ wait_for_container_setup() {
 setup() {
   echo "launching container..."
   lxc launch ubuntu:18.04 "$1" \
-    --config security.nesting=true
+    --config security.nesting=true << EOF
+config:
+  user.user-data: |
+    #cloud-config
+    packages:
+    - build-essential
+    - pkg-config
+    - libgmp-dev
+    - libpcre3-dev
+EOF
 
   wait_for_container_setup "$1"
 
