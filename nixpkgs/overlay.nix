@@ -1,10 +1,9 @@
 _self: super:
 with super; {
-  weld = callPackage ../packages/weld {};
-  comma = callPackage ../packages/comma.nix {};
   btrfs-du = callPackage ../packages/btrfs-du.nix {};
-  nixos-generators = callPackage ../packages/nixos-generators.nix {};
-  mathjax-node-page = callPackage ../packages/mathjax-node-page.nix {};
+  castty = callPackage ../packages/castty.nix {};
+  chromium-with-flash = chromium.override { enablePepperFlash = true; };
+  comma = callPackage ../packages/comma.nix {};
   ghidra-hidpi = ghidra-bin.overrideAttrs (
     _oldAttrs: {
       postPath = ''
@@ -13,8 +12,10 @@ with super; {
       '';
     }
   );
-  obelisk = callPackage ../packages/obelisk.nix {};
   go-dqlite = callPackage ../packages/go-dqlite.nix {};
-  chromium-with-flash = chromium.override { enablePepperFlash = true; };
+  mathjax-node-page = callPackage ../packages/mathjax-node-page.nix {};
+  nixos-generators = callPackage ../packages/nixos-generators.nix {};
+  obelisk = callPackage ../packages/obelisk.nix {};
   toolbox = callPackage ../packages/toolbox.nix {};
+  weld = callPackage ../packages/weld {};
 }

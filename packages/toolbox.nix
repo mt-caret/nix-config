@@ -39,6 +39,9 @@ buildGoModule rec {
   postInstall = ''
     install -Dm444 completion/bash/toolbox \
       $out/share/bash-completion/completions/toolbox
+
+    install -Dm444 profile.d/toolbox.sh \
+      $out/share/profile.d/toolbox.sh
   '';
 
   meta = with lib; {
