@@ -62,6 +62,7 @@ rec {
     "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections";
     adjtime.source = "/persist/etc/adjtime";
     NIXOS.source = "/persist/etc/NIXOS";
+    machine-id.source = "/persist/etc/machine-id";
   };
   systemd.tmpfiles.rules = [
     "L /var/lib/NetworkManager/secret_key - - - - /persist/var/lib/NetworkManager/secret_key"
@@ -98,7 +99,6 @@ rec {
     btrfs subvolume snapshot /mnt/root-blank /mnt/root
 
     umount /mnt
-    echo 9a56c3aeb34c421491e82de1ee0c927e > /etc/machine-id
   '';
 
   environment.systemPackages = with pkgs; [
