@@ -3,6 +3,8 @@ let
   private = import ../../private/default.nix;
 in
 {
+  system.copySystemConfiguration = true;
+
   hardware = {
     cpu.intel.updateMicrocode = true;
     pulseaudio = {
