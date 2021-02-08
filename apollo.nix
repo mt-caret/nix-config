@@ -11,20 +11,18 @@ rec {
       <home-manager/nixos>
     ];
 
-  environment.variables.MESA_LOADER_DRIVER_OVERRIDE = "iris";
+  # https://github.com/NixOS/nixos-hardware/commit/19b4d5cede55b4a90354890b9e9c82232332c279
   hardware.opengl = {
-    package = (
-      pkgs.mesa.override {
-        galliumDrivers = [ "nouveau" "virgl" "swrast" "iris" ];
-      }
-    ).drivers;
+    driSupport32Bit = true;
     extraPackages = with pkgs; [
       vaapiIntel
-      intel-ocl
+      vaapiVdpau
+      libvdpau-va-gl
       intel-media-driver
+      #intel-ocl
     ];
   };
-  services.xserver.videoDrivers = [ "modesettings" ];
+  boot.initrd.kernelModules = [ "i915" ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -62,7 +60,6 @@ rec {
     "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections";
     adjtime.source = "/persist/etc/adjtime";
     NIXOS.source = "/persist/etc/NIXOS";
-    machine-id.source = "/persist/etc/machine-id";
   };
   systemd.tmpfiles.rules = [
     "L /var/lib/NetworkManager/secret_key - - - - /persist/var/lib/NetworkManager/secret_key"
@@ -75,31 +72,37 @@ rec {
     # rollback results in sudo lectures after each reboot
     Defaults lecture = never
   '';
-  boot.initrd.postDeviceCommands = pkgs.lib.mkBefore ''
-    mkdir -p /mnt
-    mount -o subvol=/ /dev/mapper/enc /mnt
+  boot.initrd = {
+    postDeviceCommands = pkgs.lib.mkBefore ''
+      mkdir -p /mnt
+      mount -o subvol=/ /dev/mapper/enc /mnt
 
-    # /root contains subvolumes:
-    # - /root/var/lib/portables
-    # - /root/var/lib/machines
-    #
-    # This makes `btrfs subvolume delete /mnt/root` fail;
-    # so we list them out and delete them here before
-    # attempting to delete /root.
-    btrfs subvolume list -o /mnt/root |
-    cut -f9 -d' ' |
-    while read subvolume; do
-      echo "deleting /$subvolume subvolume..."
-      btrfs subvolume delete "/mnt/$subvolume"
-    done &&
-    echo "deleting /root subvolume..." &&
-    btrfs subvolume delete /mnt/root
+      # /root contains subvolumes:
+      # - /root/var/lib/portables
+      # - /root/var/lib/machines
+      #
+      # This makes `btrfs subvolume delete /mnt/root` fail;
+      # so we list them out and delete them here before
+      # attempting to delete /root.
+      btrfs subvolume list -o /mnt/root |
+      cut -f9 -d' ' |
+      while read subvolume; do
+        echo "deleting /$subvolume subvolume..."
+        btrfs subvolume delete "/mnt/$subvolume"
+      done &&
+      echo "deleting /root subvolume..." &&
+      btrfs subvolume delete /mnt/root
 
-    echo "restoring blank /root subvolume..."
-    btrfs subvolume snapshot /mnt/root-blank /mnt/root
+      echo "restoring blank /root subvolume..."
+      btrfs subvolume snapshot /mnt/root-blank /mnt/root
 
-    umount /mnt
-  '';
+      umount /mnt
+    '';
+    postMountCommands = ''
+      mkdir -p /etc/
+      echo "c5c1d4d47d7d4d91a75a07faf6feca60" > /etc/machine-id
+    '';
+  };
 
   environment.systemPackages = with pkgs; [
     compsize # btrfs util
