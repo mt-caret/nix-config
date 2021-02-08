@@ -48,7 +48,7 @@ wait_for_container_setup() {
 
 setup() {
   echo "launching container..."
-  lxc launch ubuntu:18.04 "$1" \
+  lxc launch ubuntu:20.10 "$1" \
     --config security.nesting=true << EOF
 config:
   user.user-data: |
