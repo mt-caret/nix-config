@@ -1,13 +1,14 @@
 { config, pkgs, ... }:
 rec {
   imports =
-    [ /etc/nixos/hardware-configuration.nix
+    [
+      /etc/nixos/hardware-configuration.nix
       ./nixos/base.nix
       ./nixos/fonts.nix
       ./nixos/ime.nix
       ./nixos/xmonad.nix
       ./nixos/adblock.nix
-      (import ./nixpkgs).home-manager-module
+      (import ./nixpkgs).home-manager-nixos
       #<home-manager/nixos>
     ];
 
@@ -19,7 +20,7 @@ rec {
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
+
   networking.hostName = "demeter"; # Define your hostname.
 
   time.timeZone = "Asia/Hong_Kong";

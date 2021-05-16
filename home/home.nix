@@ -20,9 +20,16 @@ in
       ./vim.nix
       ./rust.nix
       ./newsboat.nix
+      (import ../nixpkgs).home-manager-config
     ] else
       if host == "ubuntu-container"
-      then [ ./ubuntu.nix ./vim.nix ./rust.nix ] else [];
+      then
+        [
+          ./ubuntu.nix
+          ./vim.nix
+          ./rust.nix
+          (import ../nixpkgs).home-manager-config
+        ] else [];
 
   home.packages = (
     with pkgs; [

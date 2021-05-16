@@ -154,8 +154,8 @@ in
     maxJobs = "auto";
     trustedUsers = [ "root" "delta" ];
   };
-  nixpkgs = {
-    config = import ../nixpkgs/config.nix;
-    overlays = [ (import ../nixpkgs/overlay.nix) ];
-  };
+  nixpkgs = (import ../nixpkgs).defaultArgs;
+  systemd.tmpfiles.rules = [
+    "L /root/.nix-channels - - - - ${(import ../nixpkgs).nix-channels}"
+  ];
 }
