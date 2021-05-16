@@ -7,7 +7,7 @@ let
       p.hostname
     ];
   };
-  hidpi = host == "artemis" || host == "apollo";
+  hidpi = host == "artemis" || host == "apollo" || host == "demeter";
 in
 {
   imports = [ ./vscode.nix ];
