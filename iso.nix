@@ -5,6 +5,8 @@
     <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
   ];
 
+  boot.loader.grub.memtest86.enable = true;
+
   hardware.enableAllFirmware = true;
   nixpkgs.config.allowUnfree = true;
 
