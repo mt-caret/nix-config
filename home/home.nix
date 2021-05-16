@@ -1,7 +1,7 @@
 host: { pkgs, lib, ... }:
 let
-  unstable = import ../nixpkgs/unstable.nix;
-  isNixOS = host == "athena" || host == "apollo" || host == "artemis";
+  unstable = (import ../nixpkgs).unstable;
+  isNixOS = host == "athena" || host == "apollo" || host == "artemis" || host == "demeter";
   private = import ../../private/default.nix;
 in
 {
@@ -136,7 +136,7 @@ in
     ]
     ++ (
       if isNixOS
-      then [ unstable.haskell.packages.ghc883.haskell-language-server ]
+      then [ unstable.haskell.packages.ghc884.haskell-language-server ]
       else []
     )
   );

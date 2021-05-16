@@ -1,6 +1,6 @@
-{ host, lib, pkgs, ... }:
+{ host, lib, pkgs, config, ... }:
 let
-  unstable = import ../nixpkgs/unstable.nix;
+  unstable = (import ../nixpkgs).unstable;
   xmonad = pkgs.xmonad-with-packages.override {
     packages = p: [
       p.xmonad-contrib
@@ -179,35 +179,46 @@ in
     };
     windowManager.command = "${xmonad}/bin/xmonad";
   };
+  home.file.".xmonad".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/delta/config/xmonad";
 
   services.status-notifier-watcher.enable = true;
   services.xembed-sni-proxy.enable = true;
   services.taffybar = {
     enable = true;
-    package = (
-      unstable.taffybar.override {
-        packages = p: [
-          p.hostname
-          p.alsa-core
-          p.alsa-mixer
-          p.mtl
-          p.text
-        ];
-        inherit
-          (unstable.haskellPackages.override (
-            old: {
-              overrides = lib.composeExtensions (old.overrides or (_: _: {})) (
-                self: super: {
-                  taffybar = super.taffybar.overrideAttrs (
-                    oldAttrs: { patches = [ ../taffybar/show-error.patch ]; }
-                  );
-                }
-              );
-            }
-          )) ghcWithPackages
-          ;
-      }
-    );
+    package = pkgs.taffybar.override {
+      packages = p: [
+        p.hostname
+        p.alsa-core
+        p.alsa-mixer
+        p.mtl
+        p.text
+      ];
+    };
+    #package = (
+    #  unstable.taffybar.override {
+    #    packages = p: [
+    #      p.hostname
+    #      p.alsa-core
+    #      p.alsa-mixer
+    #      p.mtl
+    #      p.text
+    #    ];
+    #    inherit
+    #      (unstable.haskellPackages.override (
+    #        old: {
+    #          overrides = lib.composeExtensions (old.overrides or (_: _: {})) (
+    #            self: super: {
+    #              taffybar = super.taffybar.overrideAttrs (
+    #                oldAttrs: { patches = [ ../taffybar/show-error.patch ]; }
+    #              );
+    #            }
+    #          );
+    #        }
+    #      )) ghcWithPackages
+    #      ;
+    #  }
+    #);
   };
 
   # https://github.com/polybar/polybar/issues/913#issue-282734480

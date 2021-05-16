@@ -1,6 +1,6 @@
 { isNixOS, pkgs, ... }:
 let
-  unstable = import ../nixpkgs/unstable.nix;
+  unstable = (import ../nixpkgs).unstable;
 in
 {
   home.packages = with pkgs; [
