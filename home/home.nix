@@ -31,12 +31,13 @@ in
           (import ../nixpkgs).home-manager-config
         ] else [];
 
+  # 2021-05-28: ffmpegthumbnailer, ffmpeg, cmus commented out for ffmpeg issue
   home.packages = (
     with pkgs; [
       # ranger-tools
       atool
       atop
-      ffmpegthumbnailer # for video previews
+      #ffmpegthumbnailer # for video previews
       mediainfo
       # what a shame:
       # https://github.com/NixOS/nixpkgs/blob/54f5bff2b5e02a5a6ac0d8f8caf6716cd2a22bd5/pkgs/tools/archivers/p7zip/default.nix#L65
@@ -53,14 +54,14 @@ in
       bc
       bind
       cachix
-      cmus
+      #cmus
       colordiff
       comma
       convmv
       dstat
       entr
       exiftool
-      ffmpeg
+      #ffmpeg
       file
       gettext
       gnuplot
@@ -95,6 +96,7 @@ in
       poppler_utils
       ripgrep
       runzip
+      suimin
       shellcheck
       tokei
       toolbox

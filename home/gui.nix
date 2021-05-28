@@ -145,7 +145,11 @@ in
     enable = true;
     profileExtra =
       ''
-        light -S 0.2
+        function command_exists() {
+          command -v "$1" 2>&1 > /dev/null
+        }
+
+        command_exists light && light -S 0.2
         amixer -q sset Master 0%
         amixer -q sset Master mute
 
@@ -160,6 +164,17 @@ in
               --output DP-3 --off \
               --output DP-4 --mode 1920x1080 --pos 0x0 --rotate normal \
               --output DP-5 --off
+            ;;
+          demeter)
+            xrandr \
+              --output DP-0 --off \
+              --output DP-1 --off \
+              --output DP-2 --off \
+              --output DP-3 --off \
+              --output DP-4 --primary --mode 3840x2160 --pos 0x2160 --rotate normal \
+              --output DP-5 --mode 3840x2160 --pos 3840x0 --rotate normal \
+              --output DP-6 --mode 3840x2160 --pos 3840x2160 --rotate normal \
+              --output DP-7 --mode 3840x2160 --pos 0x0 --rotate normal
             ;;
           *)
             echo unknown host

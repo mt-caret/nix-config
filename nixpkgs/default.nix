@@ -68,7 +68,6 @@ allNixpkgs
         (builtins.map ({ name, url, ... }: "${url} ${name}") channels);
   };
   home-manager-config = { pkgs, lib, ... }: {
-    # update when above changes
     home.file.".nix-channels".source = nix-channels;
   };
 }

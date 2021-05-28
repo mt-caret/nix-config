@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+NIXOS_VERSION="20.09"
+
 run_inside_container() {
   echo "installing nix..."
   curl -L https://nixos.org/nix/install | sh
@@ -8,9 +10,9 @@ run_inside_container() {
   echo "setting up nix..."
   . /home/ubuntu/.nix-profile/etc/profile.d/nix.sh
   cat > .nix-channels << EOF
-https://nixos.org/channels/nixos-20.09 nixpkgs
+https://nixos.org/channels/nixos-$NIXOS_VERSION nixpkgs
 https://nixos.org/channels/nixos-unstable unstable
-https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz home-manager
+https://github.com/nix-community/home-manager/archive/release-$NIXOS_VERSION.tar.gz home-manager
 EOF
   nix-channel --update
 

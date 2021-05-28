@@ -16,6 +16,7 @@ with super; {
   mathjax-node-page = callPackage ../packages/mathjax-node-page.nix {};
   nixos-generators = callPackage ../packages/nixos-generators.nix {};
   obelisk = callPackage ../packages/obelisk.nix {};
+  suimin = callPackage ../packages/suimin.nix {};
   toolbox = callPackage ../packages/toolbox.nix {};
   weld = callPackage ../packages/weld {};
 }
