@@ -65,10 +65,7 @@ in
     LC_TIME = "en_DK.UTF-8"; # for ISO 8601 date formats i.e. "YYYY-MM-DD"
   };
 
-  security = {
-    rngd.enable = true;
-    sudo.enable = true;
-  };
+  security.sudo.enable = true;
 
   virtualisation.podman.enable = true;
   services.flatpak.enable = true;
@@ -107,7 +104,7 @@ in
 
   services = {
     # DBus error fix https://github.com/NixOS/nixpkgs/issues/16327
-    gnome3.at-spi2-core.enable = true;
+    gnome.at-spi2-core.enable = true;
 
     redshift = {
       enable = true;
@@ -156,6 +153,6 @@ in
   };
   nixpkgs = (import ../nixpkgs).defaultArgs;
   systemd.tmpfiles.rules = [
-    "L /root/.nix-channels - - - - ${(import ../nixpkgs).nix-channels}"
+    "L+ /root/.nix-channels - - - - ${(import ../nixpkgs).nix-channels}"
   ];
 }

@@ -10,7 +10,7 @@ let
           "WARNING: could not resolve path, defaulting to '${defaultUrl}'"
           (builtins.fetchTarball defaultUrl);
   channelUrl = channel: "https://channels.nixos.org/${channel}/nixexprs.tar.xz";
-  version = "20.09";
+  version = "21.05";
   defaultArgs = {
     config = import ./config.nix;
     overlays = [ (import ./overlay.nix) ];

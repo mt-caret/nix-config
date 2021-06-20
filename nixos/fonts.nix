@@ -4,7 +4,7 @@ let
 in
 {
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       emacs-all-the-icons-fonts

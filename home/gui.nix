@@ -130,7 +130,7 @@ in
       };
     };
     network-manager-applet.enable = true;
-    syncthing.tray = true;
+    syncthing.tray.enable = true;
     udiskie = {
       enable = true;
       tray = "always";
@@ -197,56 +197,12 @@ in
   home.file.".xmonad".source =
     config.lib.file.mkOutOfStoreSymlink "/home/delta/config/xmonad";
 
-  services.status-notifier-watcher.enable = true;
-  services.xembed-sni-proxy.enable = true;
-  services.taffybar = {
+  services.polybar = {
     enable = true;
-    package = pkgs.taffybar.override {
-      packages = p: [
-        p.hostname
-        p.alsa-core
-        p.alsa-mixer
-        p.mtl
-        p.text
-      ];
-    };
-    #package = (
-    #  unstable.taffybar.override {
-    #    packages = p: [
-    #      p.hostname
-    #      p.alsa-core
-    #      p.alsa-mixer
-    #      p.mtl
-    #      p.text
-    #    ];
-    #    inherit
-    #      (unstable.haskellPackages.override (
-    #        old: {
-    #          overrides = lib.composeExtensions (old.overrides or (_: _: {})) (
-    #            self: super: {
-    #              taffybar = super.taffybar.overrideAttrs (
-    #                oldAttrs: { patches = [ ../taffybar/show-error.patch ]; }
-    #              );
-    #            }
-    #          );
-    #        }
-    #      )) ghcWithPackages
-    #      ;
-    #  }
-    #);
+    script = "polybar example &";
+    config = "${pkgs.polybar}/share/doc/polybar/config";
   };
 
   # https://github.com/polybar/polybar/issues/913#issue-282734480
   home.sessionVariables.XDG_CURRENT_DESKTOP = "Unity";
-
-  xdg.configFile = {
-    "taffybar/taffybar.hs" = {
-      source = ../taffybar/taffybar.hs;
-      onChange = "rm -rf ~/.cache/taffybar/";
-    };
-    "taffybar/taffybar.css" = {
-      source = ../taffybar/taffybar.css;
-      onChange = "rm -rf ~/.cache/taffybar/";
-    };
-  };
 }
