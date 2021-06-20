@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-nix-build '<nixpkgs/nixos>' \
+nix-build '<nixos/nixos>' \
   -A config.system.build.isoImage \
   -I nixos-config=./iso.nix
