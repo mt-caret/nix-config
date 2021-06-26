@@ -26,6 +26,11 @@ rec {
   #time.timeZone = "America/New_York";
   #time.timeZone = "Asia/Tokyo";
 
+  programs = {
+    light.enable = true;
+    kbdlight.enable = true;
+  };
+
   services.xserver.libinput = {
     enable = true;
     touchpad = {

@@ -1,12 +1,6 @@
 { host, lib, pkgs, config, ... }:
 let
   unstable = (import ../nixpkgs).unstable;
-  xmonad = pkgs.xmonad-with-packages.override {
-    packages = p: [
-      p.xmonad-contrib
-      p.hostname
-    ];
-  };
   hidpi = host == "artemis" || host == "apollo" || host == "demeter";
 in
 {
@@ -192,10 +186,15 @@ in
       name = "Vanilla-DMZ";
       size = if host == "apollo" then 48 else 24;
     };
-    windowManager.command = "${xmonad}/bin/xmonad";
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+      config = ./xmonad.hs;
+      extraPackages = p: [
+        p.hostname
+      ];
+    };
   };
-  home.file.".xmonad".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/delta/config/xmonad";
 
   services.polybar = {
     enable = true;
