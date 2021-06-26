@@ -1,7 +1,7 @@
 host: { pkgs, lib, ... }:
 let
   unstable = (import ../nixpkgs).unstable;
-  isNixOS = host == "athena" || host == "apollo" || host == "artemis" || host == "demeter";
+  isNixOS = host == "athena" || host == "apollo" || host == "artemis" || host == "demeter" || host == "aphrodite";
   private = import ../../private/default.nix;
 in
 {

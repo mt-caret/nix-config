@@ -5,13 +5,10 @@ in
 {
   system.copySystemConfiguration = true;
 
-  hardware = {
-    cpu.intel.updateMicrocode = true;
-    pulseaudio = {
-      enable = true;
-      support32Bit = true;
-      package = pkgs.pulseaudioFull;
-    };
+  hardware.pulseaudio = {
+    enable = true;
+    support32Bit = true;
+    package = pkgs.pulseaudioFull;
   };
 
   console = {

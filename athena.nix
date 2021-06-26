@@ -10,6 +10,8 @@ rec {
     <home-manager/nixos>
   ];
 
+  hardware.cpu.amd.updateMicrocode = true;
+
   networking.hostName = "athena";
 
   #hardware.opengl = {

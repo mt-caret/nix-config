@@ -11,6 +11,8 @@ rec {
     ./nixos/dqlite-cluster.nix
   ];
 
+  hardware.cpu.amd.updateMicrocode = true;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 

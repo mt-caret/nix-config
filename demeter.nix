@@ -12,6 +12,8 @@ rec {
       #<home-manager/nixos>
     ];
 
+  hardware.cpu.amd.updateMicrocode = true;
+
   boot.supportedFilesystems = [ "btrfs" ];
   boot.loader.grub.copyKernels = true;
 
