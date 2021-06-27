@@ -198,8 +198,11 @@ in
 
   services.polybar = {
     enable = true;
-    script = "polybar example &";
-    config = "${pkgs.polybar}/share/doc/polybar/config";
+    script = "polybar bar &";
+    config = ./polybar-config;
+    package = pkgs.polybar.override {
+      pulseSupport = true;
+    };
   };
 
   # https://github.com/polybar/polybar/issues/913#issue-282734480

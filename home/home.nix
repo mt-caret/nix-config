@@ -96,7 +96,6 @@ in
       poppler_utils
       ripgrep
       runzip
-      suimin
       shellcheck
       tokei
       toolbox

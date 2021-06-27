@@ -4,6 +4,9 @@ module Main where
 
 import Control.Monad
 import qualified Data.Map as M
+import qualified Data.Function as F
+import qualified Data.Char as C
+import Data.List
 import Network.HostName
 import System.IO
 import XMonad
@@ -109,6 +112,41 @@ myAdditionalKeys =
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
+-- https://github.com/polybar/polybar/wiki/User-contributed-modules#workspaces-xmonad-haskell
+titleLogPath = "/tmp/.xmonad-title-log"
+workspaceLogPath = "/tmp/.xmonad-workspace-log"
+
+takeUntilWidth n string =
+  reverse $ go "" n string
+    where
+  go accum 0 _ = accum
+  go accum _ [] = accum
+  go accum n (head : tail) =
+    -- conservatively assume all non-ASCII characters are double-width
+    let width = if C.isLatin1 head then 1 else 2 in
+    if n < width
+    then accum
+    else go (head : accum) (n - width) tail
+
+eventLogHook = do
+  windowSet <- gets windowset
+  title <-
+    fmap (takeUntilWidth 140)
+    . maybe (return "*unnamed*") (fmap show . NW.getName)
+    . SS.peek
+    $ windowSet
+  let currentWorkspace = SS.currentTag windowSet
+  let workspaces = sort . fmap SS.tag . SS.workspaces $ windowSet
+  let workspacesString = concatMap (format currentWorkspace) workspaces
+
+  io $ appendFile titleLogPath (title ++ "\n")
+  io $ appendFile workspaceLogPath (workspacesString ++ "\n")
+    where
+  format currentWorkspace workspace =
+    if currentWorkspace == workspace
+    then "[" ++ workspace ++ "]"
+    else " " ++ workspace ++ " "
+
 getConfig hostname =
   E.ewmh
     . UH.withUrgencyHook LibNotifyUrgencyHook
@@ -120,6 +158,7 @@ getConfig hostname =
         modMask = myModMask,
         startupHook = myStartupHook,
         layoutHook = myLayoutHook,
+        logHook = eventLogHook,
         manageHook =
           (isFullscreen --> doFullFloat)
             <+> manageDocks
@@ -133,4 +172,6 @@ main :: IO ()
 main = do
   hostname <- getHostName
   let config = getConfig hostname
+  forM_ [ titleLogPath, workspaceLogPath ] $ \path ->
+    safeSpawn "mkfifo" [ path ]
   xmonad config

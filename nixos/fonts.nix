@@ -20,6 +20,10 @@ in
       vistafonts
       source-han-code-jp
       yanone-kaffeesatz
+
+      # for polybar
+      unifont
+      siji
     ];
     # c.f. https://functor.tokyo/blog/2018-10-01-japanese-on-nixos 
     fontconfig = {

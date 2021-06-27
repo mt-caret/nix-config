@@ -19,6 +19,7 @@ rec {
   boot.loader.efi.canTouchEfiVariables = true;
 
   hardware.cpu.amd.updateMicrocode = true;
+  hardware.acpilight.enable = true;
 
   networking.hostName = "aphrodite"; # Define your hostname.
 
@@ -27,7 +28,6 @@ rec {
   #time.timeZone = "Asia/Tokyo";
 
   programs = {
-    light.enable = true;
     kbdlight.enable = true;
   };
 
@@ -43,6 +43,7 @@ rec {
   environment.systemPackages = with pkgs; [
     compsize # btrfs util
     btrfs-du
+    xorg.xbacklight
   ];
 
   home-manager.users.delta = import ./home/home.nix networking.hostName;
