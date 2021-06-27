@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-NIXOS_VERSION="20.09"
+NIXOS_VERSION="21.05"
 
 run_inside_container() {
   echo "installing nix..."
@@ -9,9 +9,9 @@ run_inside_container() {
 
   echo "setting up nix..."
   . /home/ubuntu/.nix-profile/etc/profile.d/nix.sh
+
+  echo "installing home-manager..."
   cat > .nix-channels << EOF
-https://nixos.org/channels/nixos-$NIXOS_VERSION nixpkgs
-https://nixos.org/channels/nixos-unstable unstable
 https://github.com/nix-community/home-manager/archive/release-$NIXOS_VERSION.tar.gz home-manager
 EOF
   nix-channel --update
@@ -48,9 +48,23 @@ wait_for_container_setup() {
   fi
 }
 
+wait_for_container_systemd_resolved() {
+  while true; do
+    ACTIVE_STATE=$(lxc exec "$1" -- \
+      systemctl show systemd-resolved.service --property=ActiveState --value)
+
+    if [ "$ACTIVE_STATE" = "active" ]; then
+      break;
+    else
+      echo "waiting for $1 systemd-resolved (expected 'active' but found '$ACTIVE_STATE')"
+      sleep 2
+    fi
+  done
+}
+
 setup() {
   echo "launching container..."
-  lxc launch ubuntu:20.10 "$1" \
+  lxc launch ubuntu:21.04 "$1" \
     --config security.nesting=true << EOF
 config:
   user.user-data: |
@@ -63,6 +77,7 @@ config:
 EOF
 
   wait_for_container_setup "$1"
+  wait_for_container_systemd_resolved "$1"
 
   echo "pushing config..."
   lxc file push -r ~/config "$1/home/ubuntu/"
