@@ -132,7 +132,7 @@ eventLogHook = do
   windowSet <- gets windowset
   title <-
     fmap (takeUntilWidth 140)
-    . maybe (return "*unnamed*") (fmap show . NW.getName)
+    . maybe (return "") (fmap show . NW.getName)
     . SS.peek
     $ windowSet
   let currentWorkspace = SS.currentTag windowSet

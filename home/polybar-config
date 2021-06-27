@@ -223,7 +223,7 @@ format-volume = <label-volume> <bar-volume>
 label-volume = VOL %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = 🔇 muted
+label-muted = muted
 label-muted-foreground = #666
 
 bar-volume-width = 10
@@ -278,13 +278,13 @@ animation-discharging-framerate = 750
 
 [module/title-xmonad]
 type = custom/script
-exec = tail -F /tmp/.xmonad-title-log
+exec = /run/current-system/sw/bin/tail -F /tmp/.xmonad-title-log
 exec-if = [ -p /tmp/.xmonad-title-log ]
 tail = true
 
 [module/workspaces-xmonad]
 type = custom/script
-exec = tail -F /tmp/.xmonad-workspace-log
+exec = /run/current-system/sw/bin/tail -F /tmp/.xmonad-workspace-log
 exec-if = [ -p /tmp/.xmonad-workspace-log ]
 tail = true
 
