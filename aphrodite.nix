@@ -27,9 +27,7 @@ rec {
   #time.timeZone = "America/New_York";
   #time.timeZone = "Asia/Tokyo";
 
-  programs = {
-    kbdlight.enable = true;
-  };
+  programs.light.enable = true;
 
   services.xserver.libinput = {
     enable = true;
